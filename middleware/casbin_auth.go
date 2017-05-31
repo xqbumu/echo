@@ -45,7 +45,7 @@ type (
 
 		// Enforcer CasbinAuth main rule.
 		// Required.
-		Enforcer *casbin.Enforcer
+		enforcer *casbin.Enforcer
 	}
 )
 
@@ -62,7 +62,7 @@ var (
 // For missing or invalid credentials, it sends "401 - Unauthorized" response.
 func CasbinAuth(ce *casbin.Enforcer) echo.MiddlewareFunc {
 	c := DefaultCasbinAuthConfig
-	c.Enforcer = ce
+	c.enforcer = ce
 	return CasbinAuthWithConfig(c)
 }
 
@@ -98,5 +98,5 @@ func (a *CasbinAuthConfig) CheckPermission(c echo.Context) bool {
 	user := a.GetUserName(c)
 	method := c.Request().Method
 	path := c.Request().URL.Path
-	return a.Enforcer.Enforce(user, path, method)
+	return a.enforcer.Enforce(user, path, method)
 }
