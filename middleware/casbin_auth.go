@@ -42,8 +42,7 @@ type (
 	CasbinAuthConfig struct {
 		// Skipper defines a function to skip middleware.
 		Skipper Skipper
-		// Enforcer CasbinAuth main rule.
-		// Required.
+		// Enforcer CasbinAuth main rule. Required.
 		Enforcer *casbin.Enforcer
 	}
 )
