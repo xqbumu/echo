@@ -8,6 +8,7 @@ install:
     - go get -u github.com/golang/dep/...
     - go get github.com/mattn/goveralls
     - go get github.com/modocache/gover
+    - go get github.com/casbin/casbin
     - dep ensure -update
 script:
     - go test -coverprofile=echo.coverprofile
